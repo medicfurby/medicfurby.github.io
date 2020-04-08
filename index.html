@@ -13,13 +13,46 @@
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h1&gt;Hello World&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">&lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<p class="p1"><span class="s1">google.charts.load('current', {'packages':['line']});</span></p>
+<p class="p1"><span class="s1">      google.charts.setOnLoadCallback(drawChart);</span></p>
 <p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    function drawChart() {</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">      var data = new google.visualization.DataTable();</span></p>
+<p class="p1"><span class="s1">      data.addColumn('number', 'Day');</span></p>
+<p class="p1"><span class="s1">      data.addColumn('number', 'Guardians of the Galaxy');</span></p>
+<p class="p1"><span class="s1">      data.addColumn('number', 'The Avengers');</span></p>
+<p class="p1"><span class="s1">      data.addColumn('number', 'Transformers: Age of Extinction');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">      data.addRows([</span></p>
+<p class="p1"><span class="s1">        [1,  37.8, 80.8, 41.8],</span></p>
+<p class="p1"><span class="s1">        [2,  30.9, 69.5, 32.4],</span></p>
+<p class="p1"><span class="s1">        [3,  25.4,   57, 25.7],</span></p>
+<p class="p1"><span class="s1">        [4,  11.7, 18.8, 10.5],</span></p>
+<p class="p1"><span class="s1">        [5,  11.9, 17.6, 10.4],</span></p>
+<p class="p1"><span class="s1">        [6,   8.8, 13.6,  7.7],</span></p>
+<p class="p1"><span class="s1">        [7,   7.6, 12.3,  9.6],</span></p>
+<p class="p1"><span class="s1">        [8,  12.3, 29.2, 10.6],</span></p>
+<p class="p1"><span class="s1">        [9,  16.9, 42.9, 14.8],</span></p>
+<p class="p1"><span class="s1">        [10, 12.8, 30.9, 11.6],</span></p>
+<p class="p1"><span class="s1">        [11,  5.3,  7.9,  4.7],</span></p>
+<p class="p1"><span class="s1">        [12,  6.6,  8.4,  5.2],</span></p>
+<p class="p1"><span class="s1">        [13,  4.8,  6.3,  3.6],</span></p>
+<p class="p1"><span class="s1">        [14,  4.2,  6.2,  3.4]</span></p>
+<p class="p1"><span class="s1">      ]);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">      var options = {</span></p>
+<p class="p1"><span class="s1">        chart: {</span></p>
+<p class="p1"><span class="s1">          title: 'Box Office Earnings in First Two Weeks of Opening',</span></p>
+<p class="p1"><span class="s1">          subtitle: 'in millions of dollars (USD)'</span></p>
+<p class="p1"><span class="s1">        },</span></p>
+<p class="p1"><span class="s1">        width: 900,</span></p>
+<p class="p1"><span class="s1">        height: 500</span></p>
+<p class="p1"><span class="s1">      };</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">      var chart = new google.charts.Line(document.getElementById('linechart_material'));</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">      chart.draw(data, google.charts.Line.convertOptions(options));</span></p>
+<p class="p1"><span class="s1">    }</span></p>
 </body>
 </html>
