@@ -10,106 +10,41 @@
     p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Courier; color: #000000; -webkit-text-stroke: #000000}
     p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Courier; color: #000000; -webkit-text-stroke: #000000; min-height: 12.0px}
     span.s1 {font-kerning: none}
-    span.Apple-tab-span {white-space:pre}
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta charset="utf-8"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;style&gt; /* set the CSS */</span></p>
+<p class="p1"><span class="s1">&lt;html&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;head&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;script type="text/javascript"&gt;</span></p>
+<p class="p1"><span class="s1">      google.charts.load('current', {'packages':['corechart']});</span></p>
+<p class="p1"><span class="s1">      google.charts.setOnLoadCallback(drawChart);</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.line {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>fill: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>stroke: steelblue;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>stroke-width: 2px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1">      function drawChart() {</span></p>
+<p class="p1"><span class="s1">        var data = google.visualization.arrayToDataTable([</span></p>
+<p class="p1"><span class="s1">          ['Year', 'Sales', 'Expenses'],</span></p>
+<p class="p1"><span class="s1">          ['2004',  1000,      400],</span></p>
+<p class="p1"><span class="s1">          ['2005',  1170,      460],</span></p>
+<p class="p1"><span class="s1">          ['2006',  660,       1120],</span></p>
+<p class="p1"><span class="s1">          ['2007',  1030,      540]</span></p>
+<p class="p1"><span class="s1">        ]);</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- load the d3.js library --&gt; <span class="Apple-converted-space">   <span class="Apple-tab-span">	</span></span></span></p>
-<p class="p1"><span class="s1">&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">        var options = {</span></p>
+<p class="p1"><span class="s1">          title: 'Company Performance',</span></p>
+<p class="p1"><span class="s1">          curveType: 'function',</span></p>
+<p class="p1"><span class="s1">          legend: { position: 'bottom' }</span></p>
+<p class="p1"><span class="s1">        };</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// set the dimensions and margins of the graph</span></p>
-<p class="p1"><span class="s1">var margin = {top: 20, right: 20, bottom: 30, left: 50},</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width = 960 - margin.left - margin.right,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height = 500 - margin.top - margin.bottom;</span></p>
+<p class="p1"><span class="s1">        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// parse the date / time</span></p>
-<p class="p1"><span class="s1">var parseTime = d3.timeParse("%Y");</span></p>
+<p class="p1"><span class="s1">        chart.draw(data, options);</span></p>
+<p class="p1"><span class="s1">      }</span></p>
+<p class="p1"><span class="s1">    &lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;body&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div id="curve_chart" style="width: 900px; height: 500px"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// set the ranges</span></p>
-<p class="p1"><span class="s1">var x = d3.scaleTime().range([0, width]);</span></p>
-<p class="p1"><span class="s1">var y = d3.scaleLinear().range([height, 0]);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// define the line</span></p>
-<p class="p1"><span class="s1">var valueline = d3.line()</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.x(function(d) { return x(d.Date); })</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.y(function(d) { return y(d.Imports); });</span></p>
-<p class="p1"><span class="s1">// define the line</span></p>
-<p class="p1"><span class="s1">var valueline2 = d3.line()</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.x(function(d) { return x(d.Date); })</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.y(function(d) { return y(d.Exports); });</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1">// append the svg obgect to the body of the page</span></p>
-<p class="p1"><span class="s1">// appends a 'group' element to 'svg'</span></p>
-<p class="p1"><span class="s1">// moves the 'group' element to the top left margin</span></p>
-<p class="p1"><span class="s1">var svg = d3.select("body").append("svg")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.attr("width", width + margin.left + margin.right)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.attr("height", height + margin.top + margin.bottom)</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>.append("g")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.attr("transform",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>"translate(" + margin.left + "," + margin.top + ")");</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function draw(data, country) {</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>var data = data[country];</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// format the data</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>data.forEach(function(d) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>d.Date = parseTime(d.Date);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>d.Imports = +d.Imports;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>d.Exports = +d.Exports;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>});</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// sort years ascending</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>data.sort(function(a, b){</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return a["Date"]-b["Date"];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>})</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Scale the range of the data</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>x.domain(d3.extent(data, function(d) { return d.Date; }));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>y.domain([0, d3.max(data, function(d) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span><span class="Apple-converted-space">  </span>return Math.max(d.Imports, d.Exports); })]);</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Add the valueline path.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>svg.append("path")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.data([data])</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.attr("class", "line")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.attr("d", valueline);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Add the valueline path.</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>svg.append("path")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.data([data])</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.attr("class", "line")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.attr("d", valueline2); <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Add the X Axis</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>svg.append("g")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.attr("transform", "translate(0," + height + ")")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.call(d3.axisBottom(x));</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Add the Y Axis</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>svg.append("g")</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.call(d3.axisLeft(y));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p1"><span class="s1">// Get the data</span></p>
-<p class="p1"><span class="s1">d3.json("data.json", function(error, data) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>if (error) throw error;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// trigger render</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>draw(data, "Afghanistan");</span></p>
-<p class="p1"><span class="s1">});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
 </body>
 </html>
